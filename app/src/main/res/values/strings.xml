@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TeacherAsistant</string>
+
+    // Subject List
+    <string name="add_subject_btn">Dodaj Zajęcia</string>
+
+    // Subject List Item
 </resources>
