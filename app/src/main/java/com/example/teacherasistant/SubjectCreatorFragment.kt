@@ -60,8 +60,7 @@ class SubjectCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         val startTimePicker: TimePicker = view.findViewById(R.id.subject_creator_start_time_picker)
-        startTimePicker.setIs24HourView(true
-        )
+        startTimePicker.setIs24HourView(true)
         val endTimePicker: TimePicker = view.findViewById(R.id.subject_creator_end_time_picker)
         endTimePicker.setIs24HourView(true)
 

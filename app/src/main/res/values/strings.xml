@@ -25,4 +25,7 @@
 
     // Student List Item
     <string name="student_id_textview">Nr albumu:</string>
+
+    // Mark List
+    <string name="add_mark_btn">Dodaj Ocenę</string>
 </resources>

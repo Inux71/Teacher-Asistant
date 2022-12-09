@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/studentListFragment">
+    app:startDestination="@id/markListFragment">
 
     <fragment
         android:id="@+id/subjectListFragment"
@@ -21,4 +21,9 @@
         android:name="com.example.teacherasistant.StudentListFragment"
         android:label="fragment_student_list"
         tools:layout="@layout/fragment_student_list" />
+    <fragment
+        android:id="@+id/markListFragment"
+        android:name="com.example.teacherasistant.MarkListFragment"
+        android:label="fragment_mark_list"
+        tools:layout="@layout/fragment_mark_list" />
 </navigation>
