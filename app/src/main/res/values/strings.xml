@@ -4,5 +4,19 @@
     // Subject List
     <string name="add_subject_btn">Dodaj Zajęcia</string>
 
-    // Subject List Item
+    // Subject Creator
+    <string name="subject_name_placeholder">Nazwa</string>
+    <string name="subject_time_picker_separator">-</string>
+    <string name="subject_time_textview">Blok godzinowy</string>
+    <string name="create_subject_button">Utwórz przedmiot</string>
+
+    <string-array name="days">
+        <item>Poniedziałek</item>
+        <item>Wtorek</item>
+        <item>Środa</item>
+        <item>Czwartek</item>
+        <item>Piątek</item>
+        <item>Sobota</item>
+        <item>Niedziela</item>
+    </string-array>
 </resources>
