@@ -28,4 +28,19 @@
 
     // Mark List
     <string name="add_mark_btn">Dodaj Ocenę</string>
+
+    // Mark Creator
+    <string name="create_mark_button">Utwórz Ocenę</string>
+    <string name="grade_radio_button">Ocena</string>
+    <string name="points_radio_button">Punkty</string>
+    <string name="points_hint">Punkty…</string>
+
+    <string-array name="grades">
+        <item>2.5</item>
+        <item>3.0</item>
+        <item>3.5</item>
+        <item>4.0</item>
+        <item>4.5</item>
+        <item>5.0</item>
+    </string-array>
 </resources>
