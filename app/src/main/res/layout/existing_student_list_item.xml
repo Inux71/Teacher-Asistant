@@ -16,7 +16,7 @@
             android:text="@string/student_id_textview"/>
 
         <TextView
-            android:id="@+id/student_list_item_id_textview"
+            android:id="@+id/existing_student_list_item_id_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12345678"/>
@@ -28,20 +28,15 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/student_list_item_firstname_textview"
+            android:id="@+id/_existing_student_list_item_firstname_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kacper"/>
 
         <TextView
-            android:id="@+id/student_list_item_lastname_textview"
+            android:id="@+id/existing_student_list_item_lastname_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Grabiec"/>
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_button"/>
 </LinearLayout>
