@@ -3,7 +3,9 @@ package com.example.teacherasistant
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.ViewHolder>() {
@@ -12,11 +14,19 @@ class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.ViewHolder>()
         val idTextView: TextView
         val firstNameTextView: TextView
         val lastNameTextView: TextView
+        val goToButton: Button
 
         init {
             idTextView = view.findViewById(R.id.student_list_item_id_textview)
             firstNameTextView = view.findViewById(R.id.student_list_item_firstname_textview)
             lastNameTextView = view.findViewById(R.id.student_list_item_lastname_textview)
+            goToButton = view.findViewById(R.id.student_list_item_go_to_button)
+            goToButton.setOnClickListener {
+                val action =
+                    StudentListFragmentDirections.actionStudentListFragmentToMarkListFragment2()
+
+                view.findNavController().navigate(action)
+            }
         }
     }
 

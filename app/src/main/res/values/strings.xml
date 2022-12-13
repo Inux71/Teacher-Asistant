@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TeacherAsistant</string>
 
+    <string name="go_to">Przejdź</string>
     <string name="delete_button">Usuń</string>
 
     // Subject List

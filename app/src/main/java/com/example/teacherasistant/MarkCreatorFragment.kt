@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
+import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,6 +72,11 @@ class MarkCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     gradeSpinner.visibility = View.GONE
                 }
             }
+        }
+
+        val createMarkButton: Button = view.findViewById(R.id.mark_creator_create_button)
+        createMarkButton.setOnClickListener {
+            view.findNavController().popBackStack()
         }
 
         return view

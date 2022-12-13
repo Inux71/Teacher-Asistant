@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RadioGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,6 +65,11 @@ class StudentCreatorFragment : Fragment() {
                     newStudentLinearLayout.visibility = View.GONE
                 }
             }
+        }
+
+        val createStudentButton: Button = view.findViewById(R.id.student_creator_create_button)
+        createStudentButton.setOnClickListener {
+            view.findNavController().popBackStack()
         }
 
         return view

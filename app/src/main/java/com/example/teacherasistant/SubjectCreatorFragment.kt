@@ -11,9 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.findNavController
 import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,6 +65,11 @@ class SubjectCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
         startTimePicker.setIs24HourView(true)
         val endTimePicker: TimePicker = view.findViewById(R.id.subject_creator_end_time_picker)
         endTimePicker.setIs24HourView(true)
+
+        val createSubjectButton: Button = view.findViewById(R.id.subject_creator_create_button)
+        createSubjectButton.setOnClickListener {
+            view.findNavController().popBackStack()
+        }
 
         return view
     }

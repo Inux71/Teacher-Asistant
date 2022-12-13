@@ -40,8 +40,20 @@
             android:text="Grabiec"/>
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/delete_button"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/student_list_item_go_to_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_button"/>
+    </LinearLayout>
 </LinearLayout>

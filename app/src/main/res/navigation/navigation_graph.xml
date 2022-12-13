@@ -10,7 +10,14 @@
         android:id="@+id/subjectListFragment"
         android:name="com.example.teacherasistant.SubjectListFragment"
         android:label="fragment_subject_list"
-        tools:layout="@layout/fragment_subject_list" />
+        tools:layout="@layout/fragment_subject_list" >
+        <action
+            android:id="@+id/action_subjectListFragment_to_subjectCreatorFragment"
+            app:destination="@id/subjectCreatorFragment" />
+        <action
+            android:id="@+id/action_subjectListFragment_to_studentListFragment"
+            app:destination="@id/studentListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subjectCreatorFragment"
         android:name="com.example.teacherasistant.SubjectCreatorFragment"
@@ -20,12 +27,23 @@
         android:id="@+id/studentListFragment"
         android:name="com.example.teacherasistant.StudentListFragment"
         android:label="fragment_student_list"
-        tools:layout="@layout/fragment_student_list" />
+        tools:layout="@layout/fragment_student_list" >
+        <action
+            android:id="@+id/action_studentListFragment_to_studentCreatorFragment"
+            app:destination="@id/studentCreatorFragment" />
+        <action
+            android:id="@+id/action_studentListFragment_to_markListFragment2"
+            app:destination="@id/markListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/markListFragment"
         android:name="com.example.teacherasistant.MarkListFragment"
         android:label="fragment_mark_list"
-        tools:layout="@layout/fragment_mark_list" />
+        tools:layout="@layout/fragment_mark_list" >
+        <action
+            android:id="@+id/action_markListFragment_to_markCreatorFragment"
+            app:destination="@id/markCreatorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/markCreatorFragment"
         android:name="com.example.teacherasistant.MarkCreatorFragment"

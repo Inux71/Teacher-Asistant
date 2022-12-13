@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,6 +44,13 @@ class MarkListFragment : Fragment() {
 
         val markListRecyclerView: RecyclerView = view.findViewById(R.id.mark_list_recycler_view)
         markListRecyclerView.adapter = markListAdapter
+
+        val addMarkButton: Button = view.findViewById(R.id.add_mark_button)
+        addMarkButton.setOnClickListener {
+            val action = MarkListFragmentDirections.actionMarkListFragmentToMarkCreatorFragment()
+
+            view.findNavController().navigate(action)
+        }
 
         return view
     }
