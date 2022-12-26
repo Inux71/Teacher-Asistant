@@ -63,8 +63,18 @@ class StudentCreatorFragment : Fragment() {
 
         _studentCreatorViewModel = StudentCreatorViewModel(activity as Context, subjectId)
         _studentCreatorViewModel.students.observe(viewLifecycleOwner) {
-            _existingStudentListAdapter = ExistingStudentListAdapter(it)
-            existingStudentRecyclerView.adapter = _existingStudentListAdapter
+            val existingStudents: List<Student> = it
+
+            _studentCreatorViewModel.subjectWithStudents.observe(viewLifecycleOwner) {
+                _existingStudentListAdapter =
+                    ExistingStudentListAdapter(
+                        existingStudents,
+                        it.students,
+                        _studentCreatorViewModel,
+                        subjectId
+                    )
+                existingStudentRecyclerView.adapter = _existingStudentListAdapter
+            }
         }
 
         val studentCreatorRadioGroup: RadioGroup =

@@ -5,11 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherasistant.database.entities.Student
+import com.example.teacherasistant.database.entities.SubjectStudentCrossRef
+import com.example.teacherasistant.viewmodels.StudentCreatorViewModel
 
-class ExistingStudentListAdapter(private val _data: List<Student>) :
-    RecyclerView.Adapter<ExistingStudentListAdapter.ViewHolder>() {
+class ExistingStudentListAdapter(
+    private val _data: List<Student>,
+    private val _studentsInSubject: List<Student>,
+    private val _studentCreatorViewModel: StudentCreatorViewModel,
+    private val _subjectId: Long
+) : RecyclerView.Adapter<ExistingStudentListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val idTextView: TextView
@@ -38,9 +46,31 @@ class ExistingStudentListAdapter(private val _data: List<Student>) :
         viewHolder.firstNameTextView.text = _data[position].firstName
         viewHolder.lastNameTextView.text = _data[position].lastName
         viewHolder.addButton.setOnClickListener {
+            if (isStudentInSubject(_data[position].studentId!!)) {
+                Toast.makeText(it.context, "Student uczęszcza na przedmiot!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                _studentCreatorViewModel.insertSubjectWithStudent(
+                    SubjectStudentCrossRef(
+                        _subjectId,
+                        _data[position].id!!
+                    )
+                )
 
+                it.findNavController().popBackStack()
+            }
         }
     }
 
     override fun getItemCount(): Int = _data.size
+
+    private fun isStudentInSubject(studentId: String): Boolean {
+        _studentsInSubject.forEach {
+            if (it.studentId == studentId) {
+                return true
+            }
+        }
+
+        return false
+    }
 }
