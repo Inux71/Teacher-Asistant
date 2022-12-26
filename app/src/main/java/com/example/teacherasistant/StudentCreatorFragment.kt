@@ -1,7 +1,7 @@
 package com.example.teacherasistant
 
+import android.content.Context
 import android.os.Bundle
-import android.provider.MediaStore.Audio.Radio
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherasistant.viewmodels.StudentCreatorViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +28,9 @@ class StudentCreatorFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var _studentCreatorViewModel: StudentCreatorViewModel
+    private lateinit var _existingStudentListAdapter: ExistingStudentListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,14 +46,15 @@ class StudentCreatorFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_student_creator, container, false)
 
-        // Adapters
-        val existingStudentListAdapter = ExistingStudentListAdapter()
-
         val newStudentLinearLayout: LinearLayout = view.findViewById(R.id.new_student_linear_layout)
         val existingStudentRecyclerView: RecyclerView =
             view.findViewById(R.id.existing_students_recycler_view)
-        existingStudentRecyclerView.adapter = existingStudentListAdapter
 
+        _studentCreatorViewModel = StudentCreatorViewModel(activity as Context)
+        _studentCreatorViewModel.students.observe(viewLifecycleOwner) {
+            _existingStudentListAdapter = ExistingStudentListAdapter(it)
+            existingStudentRecyclerView.adapter = _existingStudentListAdapter
+        }
 
         val studentCreatorRadioGroup: RadioGroup =
             view.findViewById(R.id.student_creator_radio_group)
