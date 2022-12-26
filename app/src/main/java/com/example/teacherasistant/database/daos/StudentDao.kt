@@ -13,7 +13,7 @@ interface StudentDao {
     fun getAllStudents(): Flow<List<Student>>
 
     @Insert
-    suspend fun insertStudent(student: Student)
+    suspend fun insertStudent(student: Student): Long
 
     @Delete
     suspend fun deleteStudent(student: Student)

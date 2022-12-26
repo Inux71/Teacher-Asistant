@@ -54,14 +54,16 @@ class StudentListFragment : Fragment() {
 
         _studentListViewModel = StudentListViewModel(activity as Context, subjectId)
         _studentListViewModel.subjectWithStudents.observe(viewLifecycleOwner) {
-            _studentListAdapter = StudentListAdapter(it.students)
+            _studentListAdapter = StudentListAdapter(it.students, _studentListViewModel, subjectId)
             studentListRecyclerView.adapter = _studentListAdapter
         }
 
         val addStudentButton: Button = view.findViewById(R.id.add_student_button)
         addStudentButton.setOnClickListener {
             val action =
-                StudentListFragmentDirections.actionStudentListFragmentToStudentCreatorFragment()
+                StudentListFragmentDirections.actionStudentListFragmentToStudentCreatorFragment(
+                    subjectId
+                )
 
             view.findNavController().navigate(action)
         }

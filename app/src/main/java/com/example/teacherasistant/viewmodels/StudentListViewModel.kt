@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.teacherasistant.database.AppDatabase
 import com.example.teacherasistant.database.SubjectWithStudents
 import com.example.teacherasistant.repositories.SubjectStudentRepository
+import kotlinx.coroutines.launch
 
 class StudentListViewModel(private val _context: Context, subjectId: Long) : ViewModel() {
     private val _subjectStudentRepository =
@@ -16,4 +18,9 @@ class StudentListViewModel(private val _context: Context, subjectId: Long) : Vie
         _subjectStudentRepository.subjectWithStudents.asLiveData()
     val subjectWithStudents: LiveData<SubjectWithStudents>
         get() = _subjectWithStudents
+
+    fun deleteSubjectWithStudentByStudentId(subjectId: Long, studentId: Long) =
+        viewModelScope.launch {
+            _subjectStudentRepository.deleteSubjectWithStudentByStudentId(subjectId, studentId)
+        }
 }

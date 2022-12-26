@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.example.teacherasistant.database.SubjectWithStudents
 import com.example.teacherasistant.database.entities.Subject
+import com.example.teacherasistant.database.entities.SubjectStudentCrossRef
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,6 +22,15 @@ interface SubjectDao {
     @Insert
     suspend fun insertSubject(subject: Subject)
 
+    @Insert
+    suspend fun insertSubjectWithStudent(subjectStudentCrossRef: SubjectStudentCrossRef)
+
     @Delete
     suspend fun deleteSubject(subject: Subject)
+
+    @Query("DELETE FROM subject_student_table WHERE subjectId LIKE :id")
+    suspend fun deleteSubjectWithStudentsById(id: Long)
+
+    @Query("DELETE FROM subject_student_table WHERE subjectId LIKE :subjectId AND studentId LIKE :studentId")
+    suspend fun deleteSubjectWithStudentByStudentId(subjectId: Long, studentId: Long)
 }

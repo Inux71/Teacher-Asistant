@@ -11,10 +11,14 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherasistant.database.entities.Student
+import com.example.teacherasistant.database.entities.SubjectStudentCrossRef
 import com.example.teacherasistant.viewmodels.StudentCreatorViewModel
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +31,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class StudentCreatorFragment : Fragment() {
+    private val _args: StudentCreatorFragmentArgs by navArgs()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -49,11 +55,13 @@ class StudentCreatorFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_student_creator, container, false)
 
+        val subjectId: Long = _args.subjectId
+
         val newStudentLinearLayout: LinearLayout = view.findViewById(R.id.new_student_linear_layout)
         val existingStudentRecyclerView: RecyclerView =
             view.findViewById(R.id.existing_students_recycler_view)
 
-        _studentCreatorViewModel = StudentCreatorViewModel(activity as Context)
+        _studentCreatorViewModel = StudentCreatorViewModel(activity as Context, subjectId)
         _studentCreatorViewModel.students.observe(viewLifecycleOwner) {
             _existingStudentListAdapter = ExistingStudentListAdapter(it)
             existingStudentRecyclerView.adapter = _existingStudentListAdapter
@@ -98,9 +106,17 @@ class StudentCreatorFragment : Fragment() {
                             lastNameEditText.text.toString()
                         )
 
-                        _studentCreatorViewModel.insertStudent(student)
+                        lifecycleScope.launch {
+                            val studentId: Long = _studentCreatorViewModel.insertStudent(student)
+                            _studentCreatorViewModel.insertSubjectWithStudent(
+                                SubjectStudentCrossRef(
+                                    subjectId,
+                                    studentId
+                                )
+                            )
 
-                        view.findNavController().popBackStack()
+                            view.findNavController().popBackStack()
+                        }
                     }
                 }
             } else {

@@ -56,5 +56,9 @@
         android:id="@+id/studentCreatorFragment"
         android:name="com.example.teacherasistant.StudentCreatorFragment"
         android:label="fragment_student_creator"
-        tools:layout="@layout/fragment_student_creator" />
+        tools:layout="@layout/fragment_student_creator" >
+        <argument
+            android:name="subject_id"
+            app:argType="long" />
+    </fragment>
 </navigation>

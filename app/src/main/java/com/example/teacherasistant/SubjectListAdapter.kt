@@ -55,6 +55,7 @@ class SubjectListAdapter(
             it.findNavController().navigate(action)
         }
         viewHolder.deleteButton.setOnClickListener {
+            _subjectListViewModel.deleteSubjectWithStudentsById(_data[position].id!!)
             _subjectListViewModel.deleteSubject(_data[position])
         }
     }

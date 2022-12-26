@@ -9,5 +9,5 @@ class StudentRepository(private val _studentDao: StudentDao) {
     val students: Flow<List<Student>>
         get() = _students
 
-    suspend fun insertStudent(student: Student) = _studentDao.insertStudent(student)
+    suspend fun insertStudent(student: Student): Long = _studentDao.insertStudent(student)
 }
