@@ -33,4 +33,10 @@ interface SubjectDao {
 
     @Query("DELETE FROM subject_student_table WHERE subjectId LIKE :subjectId AND studentId LIKE :studentId")
     suspend fun deleteSubjectWithStudentByStudentId(subjectId: Long, studentId: Long)
+
+    @Query("DELETE FROM mark_table WHERE subject_id LIKE :subjectId AND student_id LIKE :studentId")
+    suspend fun deleteSubjectStudentMarks(subjectId: Long, studentId: Long)
+
+    @Query("DELETE FROM mark_table WHERE subject_id LIKE :id")
+    suspend fun deleteSubjectMarks(id: Long)
 }

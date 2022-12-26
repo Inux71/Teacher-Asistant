@@ -2,7 +2,6 @@ package com.example.teacherasistant
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.MediaStore.Audio.Radio
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +10,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.navigation.findNavController
+import com.example.teacherasistant.database.entities.Mark
+import com.example.teacherasistant.viewmodels.MarkCreatorViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,11 +32,20 @@ class MarkCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var _subjectId: Long? = null
+    private var _studentId: Long? = null
+
+    private lateinit var _markCreatorViewModel: MarkCreatorViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        val args = arguments?.let {
+            MarkCreatorFragmentArgs.fromBundle(it)
+        }
+
+        if (args != null) {
+            _subjectId = args.subjectId
+            _studentId = args.studentId
         }
     }
 
@@ -45,6 +55,9 @@ class MarkCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_mark_creator, container, false)
+
+        _markCreatorViewModel =
+            MarkCreatorViewModel(activity as Context, _subjectId!!, _studentId!!)
 
         val pointsEditText: EditText = view.findViewById(R.id.mark_creator_points_edit_text)
         val gradeSpinner: Spinner = view.findViewById(R.id.mark_creator_grade_spinner)
@@ -76,7 +89,25 @@ class MarkCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         val createMarkButton: Button = view.findViewById(R.id.mark_creator_create_button)
         createMarkButton.setOnClickListener {
-            view.findNavController().popBackStack()
+            val mark: Mark
+
+            when (modeRadioGroup.checkedRadioButtonId) {
+                R.id.grade_mode_radio_button -> {
+                    mark = Mark(null, _studentId, _subjectId, gradeSpinner.selectedItem.toString())
+                    _markCreatorViewModel.insertMark(mark)
+                    view.findNavController().popBackStack()
+                }
+
+                R.id.points_mode_radio_button -> {
+                    mark = Mark(null, _studentId, _subjectId, pointsEditText.text.toString())
+                    _markCreatorViewModel.insertMark(mark)
+                    view.findNavController().popBackStack()
+                }
+
+                else -> {
+                    Toast.makeText(context, "Nie wybrano typu!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         return view

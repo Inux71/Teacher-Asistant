@@ -25,4 +25,8 @@ class SubjectListViewModel(private val _context: Context) : ViewModel() {
     fun deleteSubjectWithStudentsById(id: Long) = viewModelScope.launch {
         _subjectRepository.deleteSubjectWithStudentsById(id)
     }
+
+    fun deleteSubjectMarks(id: Long) = viewModelScope.launch {
+        _subjectRepository.deleteSubjectMarks(id)
+    }
 }

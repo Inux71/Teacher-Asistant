@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Mark(
     @PrimaryKey(autoGenerate = true) val id: Long?,
     @ColumnInfo(name = "student_id") val studentId: Long?,
-    @ColumnInfo(name = "value") val value: Float?
+    @ColumnInfo(name = "subject_id") val subjectId: Long?,
+    @ColumnInfo(name = "value") val value: String?
 )

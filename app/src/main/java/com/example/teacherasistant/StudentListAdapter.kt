@@ -28,12 +28,6 @@ class StudentListAdapter(
             firstNameTextView = view.findViewById(R.id.student_list_item_firstname_textview)
             lastNameTextView = view.findViewById(R.id.student_list_item_lastname_textview)
             goToButton = view.findViewById(R.id.student_list_item_go_to_button)
-            goToButton.setOnClickListener {
-                val action =
-                    StudentListFragmentDirections.actionStudentListFragmentToMarkListFragment2()
-
-                view.findNavController().navigate(action)
-            }
             deleteButton = view.findViewById(R.id.student_list_item_delete_button)
         }
     }
@@ -49,7 +43,17 @@ class StudentListAdapter(
         viewHolder.idTextView.text = _data[position].studentId
         viewHolder.firstNameTextView.text = _data[position].firstName
         viewHolder.lastNameTextView.text = _data[position].lastName
+        viewHolder.goToButton.setOnClickListener {
+            val action =
+                StudentListFragmentDirections.actionStudentListFragmentToMarkListFragment2(
+                    _subjectId,
+                    _data[position].id!!
+                )
+
+            it.findNavController().navigate(action)
+        }
         viewHolder.deleteButton.setOnClickListener {
+            _studentListViewModel.deleteSubjectStudentMarks(_subjectId, _data[position].id!!)
             _studentListViewModel.deleteSubjectWithStudentByStudentId(
                 _subjectId,
                 _data[position].id!!

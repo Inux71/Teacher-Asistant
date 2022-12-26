@@ -16,4 +16,7 @@ class SubjectStudentRepository(private val _subjectDao: SubjectDao, subjectId: L
 
     suspend fun deleteSubjectWithStudentByStudentId(subjectId: Long, studentId: Long) =
         _subjectDao.deleteSubjectWithStudentByStudentId(subjectId, studentId)
+
+    suspend fun deleteSubjectStudentMarks(subjectId: Long, studentId: Long) =
+        _subjectDao.deleteSubjectStudentMarks(subjectId, studentId)
 }
