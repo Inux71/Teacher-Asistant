@@ -1,5 +1,6 @@
 package com.example.teacherasistant
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherasistant.database.entities.Subject
 
-class SubjectListAdapter() : RecyclerView.Adapter<SubjectListAdapter.ViewHolder>() {
+class SubjectListAdapter(private val _data: List<Subject>, private val _context: Context) :
+    RecyclerView.Adapter<SubjectListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dayTextView: TextView
@@ -38,8 +41,14 @@ class SubjectListAdapter() : RecyclerView.Adapter<SubjectListAdapter.ViewHolder>
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
+        viewHolder.dayTextView.text = _data[position].day
+        viewHolder.timeTextView.text = _context.getString(
+            R.string.subject_list_item_time_placeholder,
+            _data[position].startTime,
+            _data[position].endTime
+        )
+        viewHolder.nameTextView.text = _data[position].name
     }
 
-    override fun getItemCount(): Int = 5
+    override fun getItemCount(): Int = _data.size
 }

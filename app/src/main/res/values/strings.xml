@@ -7,6 +7,9 @@
     // Subject List
     <string name="add_subject_btn">Dodaj Zajęcia</string>
 
+    // Subject List Item
+    <string name="subject_list_item_time_placeholder">%1$s-%2$s</string>
+
     // Subject Creator
     <string name="subject_name_placeholder">Nazwa</string>
     <string name="subject_time_picker_separator">-</string>
