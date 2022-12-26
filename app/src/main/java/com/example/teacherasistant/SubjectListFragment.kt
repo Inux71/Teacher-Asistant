@@ -41,6 +41,8 @@ class SubjectListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //context?.deleteDatabase("teacher_asistant_database")
+
         val view = inflater.inflate(R.layout.fragment_subject_list, container, false)
 
         val subjectListRecyclerView: RecyclerView =
@@ -48,7 +50,7 @@ class SubjectListFragment : Fragment() {
 
         _subjectListViewModel = SubjectListViewModel(activity as Context)
         _subjectListViewModel.subjects.observe(viewLifecycleOwner) {
-            _subjectListAdapter = SubjectListAdapter(it, activity as Context)
+            _subjectListAdapter = SubjectListAdapter(it, activity as Context, _subjectListViewModel)
             subjectListRecyclerView.adapter = _subjectListAdapter
         }
 

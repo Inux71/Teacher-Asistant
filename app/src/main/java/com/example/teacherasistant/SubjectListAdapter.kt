@@ -9,15 +9,20 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherasistant.database.entities.Subject
+import com.example.teacherasistant.viewmodels.SubjectListViewModel
 
-class SubjectListAdapter(private val _data: List<Subject>, private val _context: Context) :
-    RecyclerView.Adapter<SubjectListAdapter.ViewHolder>() {
+class SubjectListAdapter(
+    private val _data: List<Subject>,
+    private val _context: Context,
+    private val _subjectListViewModel: SubjectListViewModel
+) : RecyclerView.Adapter<SubjectListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dayTextView: TextView
         val timeTextView: TextView
         val nameTextView: TextView
         val goToButton: Button
+        val deleteButton: Button
 
         init {
             dayTextView = view.findViewById(R.id.subject_list_item_day_textview)
@@ -30,6 +35,7 @@ class SubjectListAdapter(private val _data: List<Subject>, private val _context:
 
                 view.findNavController().navigate(action)
             }
+            deleteButton = view.findViewById(R.id.subject_list_item_delete_button)
         }
     }
 
@@ -48,6 +54,9 @@ class SubjectListAdapter(private val _data: List<Subject>, private val _context:
             _data[position].endTime
         )
         viewHolder.nameTextView.text = _data[position].name
+        viewHolder.deleteButton.setOnClickListener {
+            _subjectListViewModel.deleteSubject(_data[position])
+        }
     }
 
     override fun getItemCount(): Int = _data.size
