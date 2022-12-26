@@ -39,18 +39,21 @@
             android:visibility="gone">
 
             <EditText
+                android:id="@+id/student_creator_first_name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/firstname_hint"
                 android:inputType="text"/>
 
             <EditText
+                android:id="@+id/student_creator_last_name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/lastname_hint"
                 android:inputType="text"/>
 
             <EditText
+                android:id="@+id/student_creator_student_id_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/id_hint"
