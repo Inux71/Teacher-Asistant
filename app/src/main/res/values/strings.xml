@@ -37,6 +37,9 @@
     <string name="lastname_hint">Nazwisko…</string>
     <string name="id_hint">Nr albumu…</string>
 
+    // Existing Student List Item
+    <string name="add_existing_student_button_text">Dodaj</string>
+
     // Mark List
     <string name="add_mark_btn">Dodaj Ocenę</string>
 

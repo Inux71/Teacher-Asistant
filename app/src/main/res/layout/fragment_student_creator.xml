@@ -55,6 +55,12 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/id_hint"
                 android:inputType="number"/>
+
+            <Button
+                android:id="@+id/student_creator_create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create_student_button"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -64,12 +70,4 @@
             app:layoutManager="LinearLayoutManager"
             android:visibility="gone"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/student_creator_create_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:text="@string/create_student_button"/>
 </RelativeLayout>
