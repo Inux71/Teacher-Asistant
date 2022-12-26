@@ -1,5 +1,6 @@
 package com.example.teacherasistant
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherasistant.viewmodels.StudentListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,9 +23,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class StudentListFragment : Fragment() {
+    private val _args: StudentListFragmentArgs by navArgs()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var _studentListViewModel: StudentListViewModel
+    private lateinit var _studentListAdapter: StudentListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +47,16 @@ class StudentListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_student_list, container, false)
 
-        // Adapters
-        val studentListAdapter = StudentListAdapter()
+        val subjectId: Long = _args.subjectId
 
         val studentListRecyclerView: RecyclerView =
             view.findViewById(R.id.student_list_recycler_view)
-        studentListRecyclerView.adapter = studentListAdapter
+
+        _studentListViewModel = StudentListViewModel(activity as Context, subjectId)
+        _studentListViewModel.subjectWithStudents.observe(viewLifecycleOwner) {
+            _studentListAdapter = StudentListAdapter(it.students)
+            studentListRecyclerView.adapter = _studentListAdapter
+        }
 
         val addStudentButton: Button = view.findViewById(R.id.add_student_button)
         addStudentButton.setOnClickListener {

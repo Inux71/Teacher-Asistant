@@ -29,12 +29,6 @@ class SubjectListAdapter(
             timeTextView = view.findViewById(R.id.subject_list_item_time_textview)
             nameTextView = view.findViewById(R.id.subject_list_item_name_textview)
             goToButton = view.findViewById(R.id.subject_list_item_go_to_button)
-            goToButton.setOnClickListener {
-                val action =
-                    SubjectListFragmentDirections.actionSubjectListFragmentToStudentListFragment()
-
-                view.findNavController().navigate(action)
-            }
             deleteButton = view.findViewById(R.id.subject_list_item_delete_button)
         }
     }
@@ -54,6 +48,12 @@ class SubjectListAdapter(
             _data[position].endTime
         )
         viewHolder.nameTextView.text = _data[position].name
+        viewHolder.goToButton.setOnClickListener {
+            val action =
+                SubjectListFragmentDirections.actionSubjectListFragmentToStudentListFragment(_data[position].id!!)
+
+            it.findNavController().navigate(action)
+        }
         viewHolder.deleteButton.setOnClickListener {
             _subjectListViewModel.deleteSubject(_data[position])
         }

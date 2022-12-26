@@ -7,8 +7,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherasistant.database.entities.Student
 
-class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.ViewHolder>() {
+class StudentListAdapter(private val _data: List<Student>) :
+    RecyclerView.Adapter<StudentListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val idTextView: TextView
@@ -38,8 +40,10 @@ class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.ViewHolder>()
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
+        viewHolder.idTextView.text = _data[position].studentId
+        viewHolder.firstNameTextView.text = _data[position].firstName
+        viewHolder.lastNameTextView.text = _data[position].lastName
     }
 
-    override fun getItemCount(): Int = 5
+    override fun getItemCount(): Int = _data.size
 }

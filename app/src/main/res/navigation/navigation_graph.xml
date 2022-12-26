@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_studentListFragment_to_markListFragment2"
             app:destination="@id/markListFragment" />
+        <argument
+            android:name="subject_id"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/markListFragment"
