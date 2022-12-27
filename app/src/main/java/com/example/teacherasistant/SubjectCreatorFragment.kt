@@ -1,10 +1,7 @@
 package com.example.teacherasistant
 
-import android.app.Dialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TimePicker
-import androidx.fragment.app.DialogFragment
+import android.widget.Toast
 import androidx.navigation.findNavController
-import java.util.Calendar
+import com.example.teacherasistant.database.entities.Subject
+import com.example.teacherasistant.viewmodels.SubjectCreatorViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +33,8 @@ class SubjectCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var _subjectCreatorViewModel: SubjectCreatorViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -48,6 +49,10 @@ class SubjectCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_subject_creator, container, false)
+
+        _subjectCreatorViewModel = SubjectCreatorViewModel(activity as Context)
+
+        val nameEditText: EditText = view.findViewById(R.id.subject_creator_name_edit_text)
 
         val daySpinner: Spinner = view.findViewById(R.id.subject_creator_day_spinner)
         daySpinner.onItemSelectedListener = this
@@ -68,7 +73,38 @@ class SubjectCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         val createSubjectButton: Button = view.findViewById(R.id.subject_creator_create_button)
         createSubjectButton.setOnClickListener {
-            view.findNavController().popBackStack()
+            val startHour: Int = startTimePicker.hour
+            val startMinute: Int = startTimePicker.minute
+            val endHour: Int = endTimePicker.hour
+            val endMinute: Int = endTimePicker.minute
+
+            if (nameEditText.text.isNotEmpty() && ((startHour < endHour) ||
+               ((startHour == endHour) && (startMinute < endMinute)))) {
+                val startTime: String =
+                    "${if (startHour < 10) "0$startHour" else "$startHour"}:" +
+                            if (startMinute < 10) "0$startMinute" else "$startMinute"
+                val endTime: String =
+                    "${if (endHour < 10) "0$endHour" else "$endHour"}:" +
+                            if (endMinute < 10) "0$endMinute" else "$endMinute"
+
+                val subject = Subject(
+                    null,
+                    nameEditText.text.toString(),
+                    daySpinner.selectedItem.toString(),
+                    startTime,
+                    endTime
+                )
+
+                _subjectCreatorViewModel.insertSubject(subject)
+
+                view.findNavController().popBackStack()
+            } else {
+                Toast.makeText(
+                    context,
+                    "Nieprawidłowa nazwa lub blok godzinowy!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         return view

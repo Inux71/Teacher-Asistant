@@ -13,21 +13,18 @@
         <TextView
             android:id="@+id/subject_list_item_day_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Poniedziałek"/>
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/subject_list_item_time_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10:30-13:00"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/subject_list_item_name_textview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Programowanie"/>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +38,7 @@
             android:text="@string/go_to"/>
 
         <Button
+            android:id="@+id/subject_list_item_delete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete_button"/>

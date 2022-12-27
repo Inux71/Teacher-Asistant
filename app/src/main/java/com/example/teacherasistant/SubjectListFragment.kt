@@ -1,5 +1,6 @@
 package com.example.teacherasistant
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherasistant.viewmodels.SubjectListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +26,9 @@ class SubjectListFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var _subjectListViewModel: SubjectListViewModel
+    private lateinit var _subjectListAdapter: SubjectListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,14 +41,18 @@ class SubjectListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_subject_list, container, false)
+        //context?.deleteDatabase("teacher_asistant_database")
 
-        // Adapters
-        val subjectListAdapter = SubjectListAdapter()
+        val view = inflater.inflate(R.layout.fragment_subject_list, container, false)
 
         val subjectListRecyclerView: RecyclerView =
             view.findViewById(R.id.subject_list_recycler_view)
-        subjectListRecyclerView.adapter = subjectListAdapter
+
+        _subjectListViewModel = SubjectListViewModel(activity as Context)
+        _subjectListViewModel.subjects.observe(viewLifecycleOwner) {
+            _subjectListAdapter = SubjectListAdapter(it, activity as Context, _subjectListViewModel)
+            subjectListRecyclerView.adapter = _subjectListAdapter
+        }
 
         val addSubjectButton: Button = view.findViewById(R.id.add_subject_button)
         addSubjectButton.setOnClickListener {
