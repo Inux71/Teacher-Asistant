@@ -13,5 +13,6 @@ class SubjectRepository(private val _subjectDao: SubjectDao) {
     suspend fun deleteSubject(subject: Subject) = _subjectDao.deleteSubject(subject)
     suspend fun deleteSubjectWithStudentsById(id: Long) =
         _subjectDao.deleteSubjectWithStudentsById(id)
+
     suspend fun deleteSubjectMarks(id: Long) = _subjectDao.deleteSubjectMarks(id)
 }

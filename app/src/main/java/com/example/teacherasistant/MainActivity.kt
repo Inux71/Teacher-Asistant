@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-         _navHostController = navHostFragment.navController
+        _navHostController = navHostFragment.navController
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
