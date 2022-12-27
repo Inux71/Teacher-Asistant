@@ -4,6 +4,9 @@
     <string name="go_to">Przejdź</string>
     <string name="delete_button">Usuń</string>
 
+    // Options Menu
+    <string name="reset_button_text">Resetuj</string>
+
     // Subject List
     <string name="add_subject_btn">Dodaj Zajęcia</string>
 

@@ -17,4 +17,7 @@ interface MarkDao {
 
     @Delete
     suspend fun deleteMark(mark: Mark)
+
+    @Query("DELETE FROM mark_table")
+    suspend fun deleteAllMarks()
 }
