@@ -11,5 +11,6 @@
     // Custom Colors
     <color name="dracula_orchid">#2D3436</color>
     <color name="american_river">#636E72</color>
+    <color name="soothing_breeze">#B2BEC3</color>
     <color name="city_lights">#DFE6E9</color>
 </resources>
