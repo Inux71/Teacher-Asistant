@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.options_menu_reset_button) {
-            _navHostController.popBackStack(R.id.subjectListFragment, true)
+            _navHostController.popBackStack(R.id.subjectListFragment, false)
 
             _mainViewModel.deleteAllMarks()
             _mainViewModel.deleteAllStudents()
