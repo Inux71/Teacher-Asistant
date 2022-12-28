@@ -25,7 +25,8 @@
         <Spinner
             android:id="@+id/subject_creator_day_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/city_lights"/>
 
         <TextView
             android:layout_width="match_parent"
