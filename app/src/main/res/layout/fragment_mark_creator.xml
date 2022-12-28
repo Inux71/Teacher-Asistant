@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MarkCreatorFragment">
+    tools:context=".MarkCreatorFragment"
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,20 +23,25 @@
                 android:id="@+id/grade_mode_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/grade_radio_button"/>
+                android:text="@string/grade_radio_button"
+                android:textColor="@color/city_lights"
+                android:buttonTint="@color/city_lights"/>
 
             <RadioButton
                 android:id="@+id/points_mode_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/points_radio_button"/>
+                android:text="@string/points_radio_button"
+                android:textColor="@color/city_lights"
+                android:buttonTint="@color/city_lights"/>
         </RadioGroup>
 
         <Spinner
             android:id="@+id/mark_creator_grade_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:backgroundTint="@color/city_lights"/>
 
         <EditText
             android:id="@+id/mark_creator_points_edit_text"
@@ -43,7 +49,8 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="@string/points_hint"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:theme="@style/EditTextTheme"/>
     </LinearLayout>
 
     <Button

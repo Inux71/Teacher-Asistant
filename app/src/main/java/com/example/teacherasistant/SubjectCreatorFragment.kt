@@ -40,9 +40,9 @@ class SubjectCreatorFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(
             activity as Context,
             R.array.days,
-            android.R.layout.simple_spinner_item
+            R.layout.my_spinner_item
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.my_dropdown_spinner_item)
             daySpinner.adapter = adapter
         }
 

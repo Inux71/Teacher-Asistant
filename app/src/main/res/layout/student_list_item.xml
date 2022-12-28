@@ -1,57 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_shape"
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="10sp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/student_id_textview"/>
+            android:text="@string/student_id_textview"
+            android:padding="2sp"/>
 
         <TextView
             android:id="@+id/student_list_item_id_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="2sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="10sp">
 
         <TextView
             android:id="@+id/student_list_item_firstname_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="2sp"/>
 
         <TextView
             android:id="@+id/student_list_item_lastname_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="2sp"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/student_list_item_go_to_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/go_to"/>
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/student_list_item_delete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delete_button"/>
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/student_list_item_go_to_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_go_to"
+            app:iconGravity="textStart"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 </LinearLayout>
